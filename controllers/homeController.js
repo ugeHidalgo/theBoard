@@ -1,15 +1,16 @@
 (function (homeController){
     homeController.init = function (app) {
 
-        app.get ('/', function (request, response){
-            response.render ('index', {
-                    title: 'Express using vash'
-            });
-        });
+        var data = require ('../data');
 
-        app.get ('/hello', function (request, response){
-            response.render ('index', {
-                    title: 'Hello from server'
+        app.get ('/', function (request, response){
+
+            data.getNotesCategories(function(err, results){
+                response.render ('index', {
+                        title: 'Categories',
+                        error: err,
+                        categories: results
+                });
             });
         });
         
