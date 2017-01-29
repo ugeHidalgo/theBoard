@@ -1,0 +1,10 @@
+{
+    "name": "the-board",
+    "version": "0.1.0",
+    "description": "TheBoard",
+    "main": "server.js",
+    "author": {
+        "name": "Uge Hidalgo",
+        "email": "ugehidalgo@gmail.com"
+    }
+}
