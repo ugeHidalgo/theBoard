@@ -45,7 +45,6 @@ app.get ('/api/users', function (req, res) {
     }])
 });*/
 
-console.log('Starting  server...');
 var server = http.createServer(app);
 
 server.listen(port);
