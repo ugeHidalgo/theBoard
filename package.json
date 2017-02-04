@@ -8,6 +8,7 @@
     "email": "ugehidalgo@gmail.com"
   },
   "dependencies": {
+    "body-parser": "^1.16.0",
     "ejs": "^2.5.5",
     "ejs-locals": "^1.0.2",
     "express": "^4.14.1",

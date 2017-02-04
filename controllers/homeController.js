@@ -13,6 +13,10 @@
                 });
             });
         });
+
+        app.post ('/newCategory', function (request, response){
+            var categoryName = request.body.categoryName;
+        });
         
     };
 })(module.exports);

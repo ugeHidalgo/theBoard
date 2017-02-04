@@ -10,7 +10,7 @@
             if (error){
                 next (error, null);
             } else {
-                db.notes.find({name: 'PeopleX'}).toArray( function (error, results) {
+                db.notes.find().toArray( function (error, results) {
                     if (error){
                         console.log ('Failed to retrieve notes from database: ' + error);
                         next (error, null);

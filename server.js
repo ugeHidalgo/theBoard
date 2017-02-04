@@ -13,6 +13,12 @@ var controllers = require('./controllers')
 //app.set('view engine', 'ejs'); //Set ejs as view engine
 app.set('view engine', 'vash'); //Set vash as view engine
 
+// parse urlencoded request bodies into req.body
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: false}));
+
+
+
 //Set the public static resource folder
 app.use(express.static(__dirname + '/public'));
 
