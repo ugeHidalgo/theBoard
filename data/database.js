@@ -8,11 +8,12 @@
         if (!theDb){
             //Connecto to db
             mongoDb.MongoClient.connect(mongoUrl, function (error, db) {
-                if (err){
+                if (error){
                     callbackFn(error,null);
                 } else {
                     theDb = {
-                        db: db
+                        db: db,
+                        notes : db.collection('notes')
                     };
                     callbackFn(null,theDb);
                 }
