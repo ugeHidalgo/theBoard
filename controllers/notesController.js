@@ -33,7 +33,7 @@
                     response.send(400, 'Failed to add note to category: ' + categoryName);
                 } else {
                     response.set('Content-Type','application/json');
-                    response.send(201, noteToInsert);
+                    response.status(201).send(noteToInsert);
                  }
             });
         });
