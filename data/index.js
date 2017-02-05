@@ -3,6 +3,7 @@
     var database = require ('./database');
 
 
+    //Get all categories.
     data.getNotesCategories = function (next){
         //next(null, seedData.initialNotes); //Used to seed initial data gotten from seedData.js
 
@@ -23,6 +24,19 @@
         });
     };
 
+    //Get notes from a given category name.
+    data.getNotes = function (categoryName, callbackFn){
+
+        database.getDb(function (error,db) {
+            if (error){
+                callbackFn (error, null);
+            } else {
+                db.notes.findOne ({ name:categoryName }, callbackFn);
+            }
+        });
+    };
+
+    //Creates a new category with an empty array of notes.
     data.createNewCategory = function ( categoryName, callbackFn ){
         var cat = {}
 
