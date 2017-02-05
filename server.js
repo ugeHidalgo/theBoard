@@ -6,6 +6,9 @@ var app = express();
 var port = process.env.port || 3000;
 
 var controllers = require('./controllers')
+var flash = require('connect-flash');
+var cookieParser = require('cookie-parser')
+var expressSession = require('express-session');
 
 //Setup the View engine.
 //app.set('view engine', 'jade');
@@ -16,6 +19,15 @@ app.set('view engine', 'vash'); //Set vash as view engine
 // parse urlencoded request bodies into req.body
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
+
+//Support flash
+app.use(cookieParser());
+app.use(expressSession({
+    secret: 'anystringhereisvalidtoencript',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
 
 
 

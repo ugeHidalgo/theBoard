@@ -30,29 +30,26 @@
             if (error){
                 next (error);
             } else {
-                if (categoryNameExist(categoryName,db), callbackFn) {
-                    callbackFn('Category name exists');
-                } else {
-                    cat.name = categoryName;
-                    cat.notes = []       
-                    db.notes.insert(cat, function (error){
-                        if (error){
-                            callbackFn(error);
-                        } else {
-                            callbackFn(null)
-                        }
-                    });
-                }
-            }
-        });
-    };
 
-    function categoryNameExist (categoryName, db, callbackFn) {
-        db.notes.find({name:categoryName}).count(function(error, count){
-            if (error) {
-                callbackFn(error,null);
-            } else {
-                return count!=0;
+                db.notes.find({name:categoryName}).count(function(error, count){
+                    if (error) {
+                        callbackFn(error);
+                    } else {
+                        if (count!=0) {
+                            callbackFn('Category name exists');
+                        } else {
+                            cat.name = categoryName;
+                            cat.notes = []       
+                            db.notes.insert(cat, function (error){
+                                if (error){
+                                    callbackFn(error);
+                                } else {
+                                    callbackFn(null)
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
     };

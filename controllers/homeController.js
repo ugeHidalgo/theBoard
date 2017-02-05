@@ -9,7 +9,8 @@
                 response.render ('index', {
                         title: 'Categories',
                         error: err,
-                        categories: results
+                        categories: results,
+                        newCatError: request.flash('newCatErrorMessage') 
                 });
             });
         });
@@ -19,7 +20,8 @@
 
             data.createNewCategory ( categoryName, function (error){
                 if (error) {
-                    //Todo Handle error in screen here
+                    request.flash('newCatErrorMessage',error);
+
                     console.log ('Failed to create new category: ' + error);
                     response.redirect('/');
                 } else {
