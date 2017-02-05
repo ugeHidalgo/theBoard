@@ -19,6 +19,7 @@ app.set('view engine', 'vash'); //Set vash as view engine
 // parse urlencoded request bodies into req.body
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 //Support flash
 app.use(cookieParser());

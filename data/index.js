@@ -68,6 +68,17 @@
         });
     };
 
+    //Add a note to a given category.
+    data.addNote = function (categoryName, noteToInsert, callbackFn){
+        database.getDb(function (error,db) {
+            if (error){
+                callbackFn (error);
+            } else {
+                db.notes.update({name:categoryName}, { $push: { notes: noteToInsert } }, callbackFn);
+            }
+        });
+    };
+
     function seedDataBase () {
         database.getDb ( function ( error, db){
             if (error){
