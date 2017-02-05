@@ -16,6 +16,16 @@
 
         app.post ('/newCategory', function (request, response){
             var categoryName = request.body.categoryName;
+
+            data.createNewCategory ( categoryName, function (error){
+                if (error) {
+                    //Todo Handle error in screen here
+                    console.log ('Failed to create new category: ' + error);
+                    response.redirect('/');
+                } else {
+                    response.redirect ('/notes/' + categoryName);
+                }
+            });
         });
         
     };

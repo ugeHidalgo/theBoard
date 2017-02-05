@@ -23,6 +23,40 @@
         });
     };
 
+    data.createNewCategory = function ( categoryName, callbackFn ){
+        var cat = {}
+
+        database.getDb(function (error,db) {
+            if (error){
+                next (error);
+            } else {
+                if (categoryNameExist(categoryName,db), callbackFn) {
+                    callbackFn('Category name exists');
+                } else {
+                    cat.name = categoryName;
+                    cat.notes = []       
+                    db.notes.insert(cat, function (error){
+                        if (error){
+                            callbackFn(error);
+                        } else {
+                            callbackFn(null)
+                        }
+                    });
+                }
+            }
+        });
+    };
+
+    function categoryNameExist (categoryName, db, callbackFn) {
+        db.notes.find({name:categoryName}).count(function(error, count){
+            if (error) {
+                callbackFn(error,null);
+            } else {
+                return count!=0;
+            }
+        });
+    };
+
     function seedDataBase () {
         database.getDb ( function ( error, db){
             if (error){
