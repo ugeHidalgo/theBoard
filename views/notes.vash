@@ -5,6 +5,16 @@
         <a href="/" class="btn btn-info">Back</a>
         <div>
             <div class="note note-yellow">
+                <div>This is a sample note</div>
+                <div class="note_author"><small>-Shawn Willdermuth</small></div>
+            </div>
+            <div class="note note-blue">
+                <div>This is a sample note</div>
+                <div class="note_author"><small>-Shawn Willdermuth</small></div>
+            </div>
+            <div class="note note-green">
+                <div>This is a sample note</div>
+                <div class="note_author"><small>-Shawn Willdermuth</small></div>
             </div>
         </div>
     </div>
