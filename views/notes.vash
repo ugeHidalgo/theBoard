@@ -13,8 +13,38 @@
                 <div>{{ note.note }}</div>
                 <div class="note-author"><small>-{{ note.author }}</small></div>
             </div>
-        </div>
-    </div>
 
+            <form role="form" class="form-horizontal" name="newNoteForm" ng-submit="saveNote()">
+                <div class="form-group">
+                    <label class="control-label col-lg-1">Color</label>
+                    <div class="col-lg-5">
+                        <select class="form-control" id="selectColor" name="selectColor"
+                            ng-model="newNote.color"
+                            ng-options="color for color in colors">
+                            required>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-1">Content</label>
+                    <div class="col-lg-5">
+                        <textarea cols="30" rows="2" name="note" placeholder="Your Note" 
+                                ng-model="newNote.note"  
+                                class="form-control" required maxlength="120">
+                        </textarea>
+                        <span ng-show="newNoteForm.note.$error.required" class="requiredField">* Required</span>
+                        <p class="maxLengthField">Available chars: {{ 120 - newNote.note.length }}</p>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-lg-offset-1 col-lg-5">
+                        <input type="submit" value="Save" class="btn btn-primary" ng-disabled="newNoteForm.$invalid">
+                    </div>
+                </div>
+            </form>
+        </div> <!--notesViewController-->
+    </div> <!--notesView-->
   })
 })

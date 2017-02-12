@@ -42,3 +42,12 @@ body {
   text-align: right;
 }
 
+.requiredField {
+  color: red;
+  font-family: cursive
+}
+.maxLengthField {
+  color: darkblue;
+  font-family: cursive
+}
+
