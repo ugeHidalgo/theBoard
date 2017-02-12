@@ -79,6 +79,23 @@
         });
     };
 
+    data.addUser = function (user, callbackFn) {
+        database.getDb(function (error, db) {
+            if (error){
+                console.log('Failed to add user to BD');
+                callbackFn(error);
+            } else {
+                db.users.insert(user, function (error){
+                    if (error){
+                        callbackFn(error);
+                    } else {
+                        callbackFn(null)
+                    }
+                });
+            }
+        });
+    };
+
     function seedDataBase () {
         database.getDb ( function ( error, db){
             if (error){
