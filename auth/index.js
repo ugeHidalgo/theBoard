@@ -2,6 +2,7 @@
 
     var data = require ('../data');
     var hasher = require ('./hasher');
+    
 
     auth.init  = function (app) {
 
@@ -20,7 +21,7 @@
                 name: req.body.name,
                 email: req.body.email,
                 username: req.body.username,
-                passwordHash: '',
+                passwordHash: hasher.computeHash(req.body.password, salt) ,
                 salt: salt
             };
 
