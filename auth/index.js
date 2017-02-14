@@ -62,11 +62,11 @@
                 }
             });
             authFunction (req, res, callbackFn);
+        });
 
-            /*res.render ('login', {
-               title: 'Logging',
-               message: req.flash('loginError') 
-            });*/
+        app.get ('/logout' , function (req, res) {
+            req.logout();
+            res.redirect('/');
         });
 
         app.get ('/register', function (req, res) {
