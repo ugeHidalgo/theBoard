@@ -96,6 +96,17 @@
         });
     };
 
+    data.getUser = function (username, callbackFn) {
+        database.getDb(function (error, db) {
+            if (error){
+                console.log('Failed to get user from DB');
+                callbackFn(error);
+            } else {
+                db.users.findOne({username:username}, callbackFn);
+            }
+        });
+    };
+
     function seedDataBase () {
         database.getDb ( function ( error, db){
             if (error){
