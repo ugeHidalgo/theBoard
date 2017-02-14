@@ -3,7 +3,7 @@
     var data = require ('../data'),
         hasher = require ('./hasher'),
         passport = require ('passport');
-        localStrategy = require ('localStrategy').Strategy;
+        localStrategy = require ('passport-local').Strategy;
 
 
     function userVerify( username, password, callbackFn) {
@@ -11,7 +11,7 @@
             if (!err) {
                 var testHash = hasher.computeHash(password, user.salt);
                 if (testHash === user.passwordHash) {
-                    allbackFn (null, user);
+                    callbackFn (null, user);
                     return;
                 }
             }
@@ -39,6 +39,35 @@
         });
         app.use(passport.initialize());
         app.use(passport.session());
+
+        app.get ('/login' , function (req, res) {
+            res.render ('login', {
+               title: 'Logging',
+               message: req.flash('loginError') 
+            });
+        });
+
+        app.post ('/login' , function (req, res, callbackFn) {
+            var authFunction = passport.authenticate('local', function (err, user, info) {
+                if (err) {
+                    callbackFn(err);
+                } else {
+                    req.logIn (user, function (err){
+                        if (err){
+                            callbackFn(err);
+                        } else {
+                            res.redirect('/');
+                        }
+                    });
+                }
+            });
+            authFunction (req, res, callbackFn);
+
+            /*res.render ('login', {
+               title: 'Logging',
+               message: req.flash('loginError') 
+            });*/
+        });
 
         app.get ('/register', function (req, res) {
             res.render ('register', { 

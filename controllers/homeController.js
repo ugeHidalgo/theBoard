@@ -10,7 +10,8 @@
                         title: 'Categories',
                         error: err,
                         categories: results,
-                        newCatError: request.flash('newCatErrorMessage') 
+                        newCatError: request.flash('newCatErrorMessage') ,
+                        user: request.user
                 });
             });
         });
@@ -18,7 +19,7 @@
         app.get ('/notes/:categoryName', function (req, res){
 
             var categoryName = req.params.categoryName;
-            res.render ('notes', { title: categoryName });
+            res.render ('notes', { title: categoryName, user: req.user });
         });
 
         app.post ('/newCategory', function (request, response){
