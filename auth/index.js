@@ -19,6 +19,22 @@
         });
     }
 
+    auth.ensureAuthenticated = function (req, res, callbackFn) {
+        if (req.isAuthenticated()){
+            callbackFn();
+        } else {
+            res.redirect('/login');
+        }
+    };
+
+    auth.ensureApiAuthenticated = function (req, res, callbackFn) {
+        if (req.isAuthenticated()){
+            callbackFn();
+        } else {
+            res.status(401).send('Not authorized.');
+        }
+    };
+
 
     auth.init  = function (app) {
 

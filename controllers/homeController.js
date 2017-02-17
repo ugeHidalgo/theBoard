@@ -1,7 +1,8 @@
 (function (homeController){
     homeController.init = function (app) {
 
-        var data = require ('../data');
+        var data = require ('../data'),
+            auth = require ('../auth');
 
         app.get ('/', function (request, response){
 
@@ -16,7 +17,7 @@
             });
         });
 
-        app.get ('/notes/:categoryName', function (req, res){
+        app.get ('/notes/:categoryName', auth.ensureAuthenticated, function (req, res){
 
             var categoryName = req.params.categoryName;
             res.render ('notes', { title: categoryName, user: req.user });
